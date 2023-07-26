@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: organization
+  labels:
+    app: organization
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: organization
+  template:
+    metadata:
+      labels:
+        app: organization
+    spec:
+      serviceAccountName: spring-cloud-kubernetes
+      containers:
+      - name: organization
+        image: piomin/organization
+        ports:
+        - containerPort: 8080
+        env:
+          - name: SPRING_CLOUD_BOOTSTRAP_ENABLED
+            value: "true"
+          - name: SPRING_CLOUD_KUBERNETES_SECRETS_ENABLEAPI
+            value: "true"
