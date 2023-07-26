@@ -23,50 +23,47 @@ import java.util.Optional;
 @Component
 public class KeycloakInitializerRunner implements CommandLineRunner {
 
-    public static final String MOVIES_MANAGER = "MOVIES_MANAGER";
-    public static final String USER = "USER";
-
     @Autowired
     private Keycloak keycloakAdmin;
 
     @Value("${spring.keycloak.server-url}")
     private String keycloakServerUrl;
 
-    @Value("${movies-app.redirect-url}")
-    private String moviesAppRedirectUrl;
+    @Value("${erp-app.redirect-url}")
+    private String erpAppRedirectUrl;
 
     @Override
     public void run(String... args) {
-        log.info("Initializing '{}' realm in Keycloak ...", COMPANY_SERVICE_REALM_NAME);
+        log.info("Initializing '{}' realm in Keycloak ...", ERP_REALM_NAME);
 
         Optional<RealmRepresentation> representationOptional = keycloakAdmin.realms()
                 .findAll()
                 .stream()
-                .filter(r -> r.getRealm().equals(COMPANY_SERVICE_REALM_NAME))
+                .filter(r -> r.getRealm().equals(ERP_REALM_NAME))
                 .findAny();
         if (representationOptional.isPresent()) {
-            log.info("Removing already pre-configured '{}' realm", COMPANY_SERVICE_REALM_NAME);
-            keycloakAdmin.realm(COMPANY_SERVICE_REALM_NAME).remove();
+            log.info("Removing already pre-configured '{}' realm", ERP_REALM_NAME);
+            keycloakAdmin.realm(ERP_REALM_NAME).remove();
         }
 
         // Realm
         RealmRepresentation realmRepresentation = new RealmRepresentation();
-        realmRepresentation.setRealm(COMPANY_SERVICE_REALM_NAME);
+        realmRepresentation.setRealm(ERP_REALM_NAME);
         realmRepresentation.setEnabled(true);
         realmRepresentation.setRegistrationAllowed(true);
 
         // Client
         ClientRepresentation clientRepresentation = new ClientRepresentation();
-        clientRepresentation.setClientId(MOVIES_APP_CLIENT_ID);
+        clientRepresentation.setClientId(ERP_APP_CLIENT_ID);
         clientRepresentation.setDirectAccessGrantsEnabled(true);
         clientRepresentation.setPublicClient(true);
-        clientRepresentation.setRedirectUris(List.of(moviesAppRedirectUrl));
+        clientRepresentation.setRedirectUris(List.of(erpAppRedirectUrl));
         //clientRepresentation.setWebOrigins(List.of("*"));
         clientRepresentation.setDefaultRoles(new String[]{WebSecurityConfig.USER});
         realmRepresentation.setClients(List.of(clientRepresentation));
 
         // Users
-        List<UserRepresentation> userRepresentations = MOVIES_APP_USERS.stream()
+        List<UserRepresentation> userRepresentations = ERP_APP_USERS.stream()
                 .map(userPass -> {
                     // User Credentials
                     CredentialRepresentation credentialRepresentation = new CredentialRepresentation();
@@ -89,15 +86,15 @@ public class KeycloakInitializerRunner implements CommandLineRunner {
         keycloakAdmin.realms().create(realmRepresentation);
 
         // Testing
-        UserPass admin = MOVIES_APP_USERS.get(0);
+        UserPass admin = ERP_APP_USERS.get(0);
         log.info("Testing getting token for '{}' ...", admin.username());
 
-        Keycloak keycloakMovieApp = KeycloakBuilder.builder().serverUrl(keycloakServerUrl)
-                .realm(COMPANY_SERVICE_REALM_NAME).username(admin.username()).password(admin.password())
-                .clientId(MOVIES_APP_CLIENT_ID).build();
+        Keycloak keycloakErpApp = KeycloakBuilder.builder().serverUrl(keycloakServerUrl)
+                .realm(ERP_REALM_NAME).username(admin.username()).password(admin.password())
+                .clientId(ERP_APP_CLIENT_ID).build();
 
-        log.info("'{}' token: {}", admin.username(), keycloakMovieApp.tokenManager().grantToken().getToken());
-        log.info("'{}' initialization completed successfully!", COMPANY_SERVICE_REALM_NAME);
+        log.info("'{}' token: {}", admin.username(), keycloakErpApp.tokenManager().grantToken().getToken());
+        log.info("'{}' initialization completed successfully!", ERP_REALM_NAME);
     }
 
     private Map<String, List<String>> getClientRoles(UserPass userPass) {
@@ -106,12 +103,12 @@ public class KeycloakInitializerRunner implements CommandLineRunner {
         if ("admin".equals(userPass.username())) {
             roles.add(WebSecurityConfig.ERP_MANAGER);
         }
-        return Map.of(MOVIES_APP_CLIENT_ID, roles);
+        return Map.of(ERP_APP_CLIENT_ID, roles);
     }
 
-    private static final String COMPANY_SERVICE_REALM_NAME = "company-services";
-    private static final String MOVIES_APP_CLIENT_ID = "movies-app";
-    private static final List<UserPass> MOVIES_APP_USERS = Arrays.asList(
+    private static final String ERP_REALM_NAME = "erp-realm";
+    private static final String ERP_APP_CLIENT_ID = "erp-app";
+    private static final List<UserPass> ERP_APP_USERS = Arrays.asList(
             new UserPass("admin", "admin"),
             new UserPass("user", "user"));
 
