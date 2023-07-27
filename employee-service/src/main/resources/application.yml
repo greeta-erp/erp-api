@@ -4,6 +4,15 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
+  keycloak:
+    server-url: https://keycloak.greeta.net
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${spring.keycloak.server-url}/realms/company-services
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
 
 logging:
   pattern: 
@@ -15,6 +24,12 @@ logging:
 
 info:
   system: Employee Service
+
+jwt:
+  auth:
+    converter:
+      resource-id: erp-app
+      principal-attribute: preferred_username
 
 management:
   endpoints:
