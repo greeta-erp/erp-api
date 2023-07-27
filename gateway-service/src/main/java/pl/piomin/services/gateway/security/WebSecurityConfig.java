@@ -44,7 +44,9 @@ public class WebSecurityConfig {
                 .pathMatchers(HttpMethod.GET, "/employee", "/employee/**").permitAll()
                 .pathMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 .pathMatchers("/employee", "/employee/**").hasRole(ERP_MANAGER)
-                .pathMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
+                .pathMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**", "/", "/**",
+                        "/v3/api-docs/swagger-config", "/department/v3/api-docs", "/employee/v3/api-docs",
+                        "/organization/v3/api-docs").permitAll()
                 .anyExchange().authenticated());
         http.oauth2ResourceServer()
                 .jwt()
