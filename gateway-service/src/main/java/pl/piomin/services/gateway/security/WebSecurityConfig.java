@@ -33,7 +33,6 @@ import reactor.netty.http.client.HttpClient;
 import javax.net.ssl.SSLException;
 
 @RequiredArgsConstructor
-@Configuration
 @EnableWebFluxSecurity
 public class WebSecurityConfig {
 
