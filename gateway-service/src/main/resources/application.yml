@@ -31,9 +31,19 @@ spring:
           filters:
             - RewritePath=/organization/(?<path>.*), /$\{path}
   keycloak:
-      server-url: http://localhost:8080
+      server-url: http://keycloak-server:8080
   security:
     oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: erp-app
+            scope: openid,roles
+        provider:
+          keycloak:
+            issuer-uri: http://keycloak-server:8080/realms/erp-realm
+            authorization-uri: https://keycloak.greeta.net/realms/erp-realm/protocol/openid-connect/auth
+            # token-uri: https://keycloak.greeta.net/realms/erp-realm/protocol/openid-connect/token
       resourceserver:
         jwt:
           issuer-uri: ${spring.keycloak.server-url}/realms/company-services

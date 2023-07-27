@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
-@Component
+//@Component
 public class KeycloakInitializerRunner implements CommandLineRunner {
 
     @Autowired
