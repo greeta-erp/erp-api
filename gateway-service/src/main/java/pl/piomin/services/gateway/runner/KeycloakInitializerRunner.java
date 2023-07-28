@@ -86,7 +86,7 @@ public class KeycloakInitializerRunner implements CommandLineRunner {
                 "claim.value", authorizationGrantType
         ));
 
-        clientRepresentation.getProtocolMappers().add(protocolMapper);
+        clientRepresentation.setProtocolMappers(List.of(protocolMapper));
 
 
 
