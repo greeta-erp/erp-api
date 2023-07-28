@@ -16,11 +16,6 @@ import java.util.List;
 public class CorsConfig  {
 
     @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
-    @Bean
     public CorsWebFilter corsWebFilter(@Value("${app.cors.allowed-origins}") List<String> allowedOrigins) {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
