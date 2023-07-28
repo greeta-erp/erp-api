@@ -38,7 +38,9 @@ public class WebSecurityConfig {
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
         return http
                 .authorizeExchange(exchange -> exchange
+                        .pathMatchers(HttpMethod.GET, "/department", "/department/**").permitAll()
                         .pathMatchers(HttpMethod.GET, "/employee", "/employee/**").permitAll()
+                        .pathMatchers(HttpMethod.GET, "/organization", "/organization/**").permitAll()
                         .pathMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                         .pathMatchers(HttpMethod.GET,"/webjars/**").permitAll()
                         .pathMatchers(HttpMethod.GET,"/", "/swagger-ui.html", "/swagger-ui/**").permitAll()
