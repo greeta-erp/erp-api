@@ -36,10 +36,10 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-    /*@Bean //TODO//
+    @Bean
     public JwtDecoder jwtDecoder(@Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}") String jwkSetUri) {
         return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).jwsAlgorithm(SignatureAlgorithm.RS256).build();
-    }*/
+    }
 
     public static final String ERP_MANAGER = "ERP_MANAGER";
     public static final String USER = "USER";
