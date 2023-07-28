@@ -55,6 +55,7 @@ public class KeycloakInitializerRunner implements CommandLineRunner {
         // Client
         ClientRepresentation clientRepresentation = new ClientRepresentation();
         clientRepresentation.setClientId(ERP_APP_CLIENT_ID);
+        clientRepresentation.setImplicitFlowEnabled(true);
         clientRepresentation.setDirectAccessGrantsEnabled(true);
         clientRepresentation.setPublicClient(true);
         clientRepresentation.setRedirectUris(List.of(erpAppRedirectUrl));
