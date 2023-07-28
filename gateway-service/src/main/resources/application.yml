@@ -39,7 +39,7 @@ spring:
       #     keycloak:
       #       client-id: erp-app
       #       scope: openid,roles
-      #   provider:
+      ##   provider:
       #     keycloak:
       #       issuer-uri: http://keycloak-server:8080/realms/erp-realm
       #       authorization-uri: https://keycloak.greeta.net/realms/erp-realm/protocol/openid-connect/auth
