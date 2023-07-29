@@ -63,7 +63,7 @@ public class KeycloakInitializerRunner implements CommandLineRunner {
         clientRepresentation.setPublicClient(true);
         clientRepresentation.setRedirectUris(List.of(erpAppRedirectUrl, movieAppRedirectUrl));
         //clientRepresentation.setWebOrigins(List.of("*"));
-        clientRepresentation.setDefaultRoles(new String[]{WebSecurityConfig.USER});
+        clientRepresentation.setDefaultRoles(new String[]{WebSecurityConfig.ERP_USER});
         realmRepresentation.setClients(List.of(clientRepresentation));
 
         // Users
@@ -103,7 +103,7 @@ public class KeycloakInitializerRunner implements CommandLineRunner {
 
     private Map<String, List<String>> getClientRoles(UserPass userPass) {
         List<String> roles = new ArrayList<>();
-        roles.add(WebSecurityConfig.USER);
+        roles.add(WebSecurityConfig.ERP_USER);
         if ("admin".equals(userPass.username())) {
             roles.add(WebSecurityConfig.ERP_MANAGER);
         }

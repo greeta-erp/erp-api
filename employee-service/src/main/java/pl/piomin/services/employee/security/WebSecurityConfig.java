@@ -48,5 +48,4 @@ public class WebSecurityConfig {
     }*/
 
     public static final String ERP_MANAGER = "ERP_MANAGER";
-    public static final String USER = "USER";
 }
