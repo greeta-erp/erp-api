@@ -58,7 +58,6 @@ jwt:
       principal-attribute: preferred_username
 
 app:
-  redirect-url:
   cors:
     allowed-origins: ${erp-app.base-url}
 
