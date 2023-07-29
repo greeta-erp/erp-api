@@ -8,6 +8,8 @@ spring:
       ribbon:
         enabled: false
     gateway:
+      default-filters:
+        - TokenRelay
       discovery:
         locator:
           enabled: true

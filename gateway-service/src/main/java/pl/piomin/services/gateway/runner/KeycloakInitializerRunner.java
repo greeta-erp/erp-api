@@ -5,7 +5,6 @@ import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.representations.idm.ClientRepresentation;
 import org.keycloak.representations.idm.CredentialRepresentation;
-import org.keycloak.representations.idm.ProtocolMapperRepresentation;
 import org.keycloak.representations.idm.RealmRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,43 +52,11 @@ public class KeycloakInitializerRunner implements CommandLineRunner {
         realmRepresentation.setEnabled(true);
         realmRepresentation.setRegistrationAllowed(true);
 
-        String authorizationGrantType = "authorization_code";
-        String openidScope = "openid";
-        String roleScope = "role";
-        String userNameAttribute = "preferred_username";
-
         // Client
         ClientRepresentation clientRepresentation = new ClientRepresentation();
         clientRepresentation.setClientId(ERP_APP_CLIENT_ID);
-        clientRepresentation.setAuthorizationServicesEnabled(true);
-        clientRepresentation.setPublicClient(true);
         clientRepresentation.setImplicitFlowEnabled(true);
-        clientRepresentation.setStandardFlowEnabled(true);
         clientRepresentation.setDirectAccessGrantsEnabled(true);
-        clientRepresentation.setServiceAccountsEnabled(true);
-
-        // Set the client scopes
-        clientRepresentation.setFullScopeAllowed(false);
-        clientRepresentation.setDefaultClientScopes(List.of(openidScope, roleScope));
-
-        // Set the optional user name attribute
-        clientRepresentation.setAttributes(Map.of("saml.assertion.username.attribute", userNameAttribute));
-
-        // Set the authorized grant types using ProtocolMapperRepresentation
-        ProtocolMapperRepresentation protocolMapper = new ProtocolMapperRepresentation();
-        protocolMapper.setName("openid-connect");
-        protocolMapper.setProtocol("openid-connect");
-        protocolMapper.setProtocolMapper("oidc-hardcoded-claim-mapper");
-        protocolMapper.setConfig(Map.of(
-                "claim.name", "grant_types",
-                "jsonType.label", "String",
-                "claim.value", authorizationGrantType
-        ));
-
-        //clientRepresentation.setProtocolMappers(List.of(protocolMapper));
-
-
-
         clientRepresentation.setPublicClient(true);
         clientRepresentation.setRedirectUris(List.of(erpAppRedirectUrl));
         //clientRepresentation.setWebOrigins(List.of("*"));
