@@ -48,9 +48,6 @@ public class WebSecurityConfig {
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
         return http
                 .authorizeExchange(exchange -> exchange
-                        .pathMatchers(HttpMethod.GET, "/department", "/department/**").permitAll()
-                        .pathMatchers(HttpMethod.GET, "/employee", "/employee/**").permitAll()
-                        .pathMatchers(HttpMethod.GET, "/organization", "/organization/**").permitAll()
                         .pathMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                         .pathMatchers(HttpMethod.GET,"/webjars/**").permitAll()
                         .pathMatchers(HttpMethod.GET,"/", "/swagger-ui.html", "/swagger-ui/**").permitAll()
@@ -59,12 +56,7 @@ public class WebSecurityConfig {
                         .pathMatchers(HttpMethod.GET,"/department/v3/api-docs/**").permitAll()
                         .pathMatchers(HttpMethod.GET,"/employee/v3/api-docs/**").permitAll()
                         .pathMatchers(HttpMethod.GET,"/organization/v3/api-docs/**").permitAll()
-                        .pathMatchers("/employee", "/employee/**").hasRole(ERP_MANAGER)
-                        /*.pathMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**", "/", "/**",
-                                "/v3/api-docs/swagger-config", "/department/v3/api-docs", "/employee/v3/api-docs",
-                                "/organization/v3/api-docs",
-                                "/webjars", "/webjars/**",
-                                "/webjars/swagger-ui", "/webjars/swagger-ui/**").permitAll()*/
+                        .pathMatchers(HttpMethod.GET,"/movie/v3/api-docs/**").permitAll()
                         .anyExchange().authenticated()
                         .and()
                         .oauth2ResourceServer().jwt()
