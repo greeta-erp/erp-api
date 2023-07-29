@@ -16,11 +16,12 @@ import java.util.List;
 public class CorsConfig  {
 
     @Bean
-    public CorsWebFilter corsWebFilter(@Value("${app.cors.allowed-origins}") List<String> allowedOrigins) {
+    public CorsWebFilter corsWebFilter(@Value("${erp-app.redirect-url}") String erpAppRedirectUrl,
+                                       @Value("${movie-app.redirect-url}") String movieAppRedirectUrl) {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.setAllowedOriginPatterns(allowedOrigins);
+        config.setAllowedOriginPatterns(List.of(erpAppRedirectUrl, movieAppRedirectUrl));
         config.addAllowedMethod("*");
         config.addAllowedHeader("*");
         source.registerCorsConfiguration("/**", config);

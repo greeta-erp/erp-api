@@ -32,6 +32,9 @@ public class KeycloakInitializerRunner implements CommandLineRunner {
     @Value("${erp-app.redirect-url}")
     private String erpAppRedirectUrl;
 
+    @Value("${movie-app.redirect-url}")
+    private String movieAppRedirectUrl;
+
     @Override
     public void run(String... args) {
         log.info("Initializing '{}' realm in Keycloak ...", ERP_REALM_NAME);
@@ -58,7 +61,7 @@ public class KeycloakInitializerRunner implements CommandLineRunner {
         clientRepresentation.setImplicitFlowEnabled(true);
         clientRepresentation.setDirectAccessGrantsEnabled(true);
         clientRepresentation.setPublicClient(true);
-        clientRepresentation.setRedirectUris(List.of(erpAppRedirectUrl));
+        clientRepresentation.setRedirectUris(List.of(erpAppRedirectUrl, movieAppRedirectUrl));
         //clientRepresentation.setWebOrigins(List.of("*"));
         clientRepresentation.setDefaultRoles(new String[]{WebSecurityConfig.USER});
         realmRepresentation.setClients(List.of(clientRepresentation));

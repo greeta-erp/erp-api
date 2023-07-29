@@ -63,13 +63,13 @@ jwt:
       resource-id: erp-app
       principal-attribute: preferred_username
 
-app:
-  cors:
-    allowed-origins: ${erp-app.base-url}
-
 erp-app:
   base-url: http://localhost:3000
   redirect-url: ${erp-app.base-url}/*
+
+movie-app:
+  base-url: http://localhost:3000
+  redirect-url: ${movie-app.base-url}/*
 
 logging:
   pattern: 
