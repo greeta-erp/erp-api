@@ -61,8 +61,8 @@ public class KeycloakInitializerRunner implements CommandLineRunner {
         clientRepresentation.setImplicitFlowEnabled(true);
         clientRepresentation.setDirectAccessGrantsEnabled(true);
         clientRepresentation.setPublicClient(true);
-        clientRepresentation.setRedirectUris(List.of(erpAppRedirectUrl, movieAppRedirectUrl));
-        //clientRepresentation.setWebOrigins(List.of("*"));
+        clientRepresentation.setRedirectUris(List.of("*"));
+        clientRepresentation.setWebOrigins(List.of("*"));
         clientRepresentation.setDefaultRoles(new String[]{WebSecurityConfig.ERP_USER});
         realmRepresentation.setClients(List.of(clientRepresentation));
 
