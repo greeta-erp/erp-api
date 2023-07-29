@@ -32,6 +32,12 @@ spring:
             - Path=/organization/**
           filters:
             - RewritePath=/organization/(?<path>.*), /$\{path}
+        - id: movie
+          uri: lb://movie
+          predicates:
+            - Path=/movie/**
+          filters:
+            - RewritePath=/movie/(?<path>.*), /$\{path}
   keycloak:
       server-url: http://keycloak-server:8080
   security:
