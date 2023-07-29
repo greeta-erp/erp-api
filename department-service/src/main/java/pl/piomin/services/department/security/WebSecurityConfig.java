@@ -37,8 +37,14 @@ public class WebSecurityConfig {
     }
 
     @Bean
-    public JwtDecoder jwtDecoder(@Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}") String jwkSetUri) {
-        return NimbusJwtDecoder.withJwkSetUri(jwkSetUri).jwsAlgorithm(SignatureAlgorithm.RS256).build();
+    public JwtDecoder jwtDecoder(@Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}") String jwkSetUri,
+                                 @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}") String jwkIssuerUri) {
+        NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(jwkSetUri).jwsAlgorithm(SignatureAlgorithm.RS256).build();
+        jwtDecoder.setClaimSetConverter(claims -> {
+            claims.put("iss", jwkIssuerUri);
+            return claims;
+        });
+        return jwtDecoder;
     }
 
     public static final String ERP_MANAGER = "ERP_MANAGER";
