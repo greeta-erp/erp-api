@@ -16,15 +16,15 @@ import org.springframework.web.reactive.config.WebFluxConfigurer;
 import java.util.List;
 
 @Configuration
-//@EnableWebFlux
-public class CorsConfig { // implements WebFluxConfigurer {
+@EnableWebFlux
+public class CorsConfig implements WebFluxConfigurer {
     @Value("${erp-app.redirect-url}")
     private String erpAppRedirectUrl;
 
     @Value("${movie-app.redirect-url}")
     private String movieAppRedirectUrl;
 
-    /*@Override
+    @Override
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
                 .allowCredentials(true)
@@ -32,7 +32,7 @@ public class CorsConfig { // implements WebFluxConfigurer {
                 .allowedHeaders("*")
                 .allowedMethods("*")
                 .exposedHeaders(HttpHeaders.SET_COOKIE);
-    }*/
+    }
 
     /*@Bean
     public CorsConfigurationSource corsConfigurationSource() {
