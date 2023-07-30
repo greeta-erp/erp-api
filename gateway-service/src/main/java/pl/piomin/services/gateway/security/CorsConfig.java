@@ -30,10 +30,11 @@ public class CorsConfig implements WebFluxConfigurer {
                                        @Value("${movie-app.redirect-url}") String movieAppRedirectUrl) {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
+        /*config.setAllowCredentials(true);
         config.setAllowedOriginPatterns(List.of("*"));
         config.addAllowedMethod("*");
-        config.addAllowedHeader("*");
+        config.addAllowedHeader("*");*/
+        config.applyPermitDefaultValues();
         source.registerCorsConfiguration("/**", config);
         return new CorsWebFilter(source);
     }

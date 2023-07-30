@@ -68,7 +68,7 @@ public class WebSecurityConfig {
                         .and()
                         .oauth2ResourceServer().jwt()
                         .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverterAdapter(jwtAuthConverter))
-                        .and().and().cors().disable().csrf().disable()
+                        .and().and().cors(Customizer.withDefaults())
                 ).build();
     }
 
