@@ -52,10 +52,11 @@ public class WebSecurityConfig {
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
 
         final CorsConfiguration cors_config = new CorsConfiguration();
-        cors_config.setAllowCredentials(true);
+        //cors_config.setAllowCredentials(true);
         cors_config.applyPermitDefaultValues();
-        cors_config.setAllowedOrigins(Arrays.asList("*", "null"));
-        cors_config.setAllowedMethods(List.of("GET","POST","OPTIONS","DELETE"));
+        cors_config.setAllowedOrigins(Arrays.asList("*"));
+        cors_config.setAllowedHeaders(List.of("*"));
+        cors_config.setAllowedMethods(List.of("*"));
         cors_config.setAllowedHeaders(List.of("*"));
 
         return http
@@ -81,8 +82,8 @@ public class WebSecurityConfig {
                         .oauth2ResourceServer().jwt()
                         .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverterAdapter(jwtAuthConverter))
                         .and().and()
-                        .cors(Customizer.withDefaults())
-                        //.cors().configurationSource(source -> cors_config)
+                        //.cors(Customizer.withDefaults())
+                        .cors().configurationSource(source -> cors_config)
                 ).build();
     }
 
