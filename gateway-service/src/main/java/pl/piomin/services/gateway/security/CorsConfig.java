@@ -21,10 +21,10 @@ public class CorsConfig { //implements WebFluxConfigurer {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.addAllowedOrigin("*"); // Allow requests from any origin. You may restrict this to specific origins in production.
+        corsConfig.addAllowedOriginPattern("*"); // Allow requests from any origin. You may restrict this to specific origins in production.
         corsConfig.addAllowedMethod("*"); // Allow all HTTP methods (GET, POST, PUT, DELETE, etc.).
         corsConfig.addAllowedHeader("*"); // Allow all headers.
-        //corsConfig.setAllowCredentials(true); // Allow credentials like cookies, if applicable.
+        corsConfig.setAllowCredentials(true); // Allow credentials like cookies, if applicable.
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfig);
