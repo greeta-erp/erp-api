@@ -34,8 +34,12 @@ import org.springframework.security.web.server.authentication.HttpStatusServerEn
 import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import org.springframework.security.web.server.csrf.CsrfToken;
+import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.server.WebFilter;
 import reactor.core.publisher.Mono;
+
+import java.util.Arrays;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Configuration
@@ -46,6 +50,14 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
+
+        final CorsConfiguration cors_config = new CorsConfiguration();
+        cors_config.setAllowCredentials(true);
+        cors_config.applyPermitDefaultValues();
+        cors_config.setAllowedOrigins(Arrays.asList("*", "null"));
+        cors_config.setAllowedMethods(List.of("GET","POST","OPTIONS","DELETE"));
+        cors_config.setAllowedHeaders(List.of("*"));
+
         return http
                 .authorizeExchange(exchange -> exchange
                         .pathMatchers(HttpMethod.GET, "/actuator/**").permitAll()
@@ -68,7 +80,9 @@ public class WebSecurityConfig {
                         .and()
                         .oauth2ResourceServer().jwt()
                         .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverterAdapter(jwtAuthConverter))
-                        .and().and().cors(Customizer.withDefaults())
+                        .and().and()
+                        .cors(Customizer.withDefaults())
+                        //.cors().configurationSource(source -> cors_config)
                 ).build();
     }
 
