@@ -26,7 +26,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@CrossOrigin
 public class MoviesController {
 
     private final MovieService movieService;

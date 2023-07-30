@@ -19,13 +19,9 @@ public class CorsConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
-        corsConfig.addAllowedOriginPattern(erpAppRedirectUrl);
+        //corsConfig.addAllowedOriginPattern(erpAppRedirectUrl);
         corsConfig.addAllowedOriginPattern(movieAppRedirectUrl);
-        corsConfig.addAllowedMethod("GET");
-        corsConfig.addAllowedMethod("POST");
-        corsConfig.addAllowedMethod("PUT");
-        corsConfig.addAllowedMethod("DELETE");
-        corsConfig.addAllowedMethod("OPTIONS");
+        corsConfig.addAllowedMethod("*");
         corsConfig.addAllowedHeader("*");
         corsConfig.setAllowCredentials(true);
 
