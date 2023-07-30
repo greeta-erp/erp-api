@@ -24,7 +24,7 @@ public class CorsConfig { //implements WebFluxConfigurer {
         corsConfig.addAllowedOrigin("*"); // Allow requests from any origin. You may restrict this to specific origins in production.
         corsConfig.addAllowedMethod("*"); // Allow all HTTP methods (GET, POST, PUT, DELETE, etc.).
         corsConfig.addAllowedHeader("*"); // Allow all headers.
-        corsConfig.setAllowCredentials(true); // Allow credentials like cookies, if applicable.
+        //corsConfig.setAllowCredentials(true); // Allow credentials like cookies, if applicable.
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfig);
