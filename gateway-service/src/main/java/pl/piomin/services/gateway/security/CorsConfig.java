@@ -16,7 +16,7 @@ public class CorsConfig { //implements WebFluxConfigurer {
     @Value("${movie-app.redirect-url}")
     private String movieAppRedirectUrl;
 
-    //@Bean
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.addAllowedOriginPattern(erpAppRedirectUrl);
