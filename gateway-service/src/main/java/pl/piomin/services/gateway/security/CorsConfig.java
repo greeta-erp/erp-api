@@ -3,12 +3,14 @@ package pl.piomin.services.gateway.security;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
 @Configuration
 //@EnableWebFlux
+@CrossOrigin(origins = "*")
 public class CorsConfig { //implements WebFluxConfigurer {
     @Value("${erp-app.redirect-url}")
     private String erpAppRedirectUrl;
