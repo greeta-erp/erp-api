@@ -34,6 +34,7 @@ import org.springframework.security.web.server.authentication.HttpStatusServerEn
 import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler;
 import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository;
 import org.springframework.security.web.server.csrf.CsrfToken;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.server.WebFilter;
 import reactor.core.publisher.Mono;

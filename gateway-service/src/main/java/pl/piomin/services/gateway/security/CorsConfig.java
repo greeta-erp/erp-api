@@ -3,20 +3,35 @@ package pl.piomin.services.gateway.security;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+import org.springframework.web.reactive.config.CorsRegistry;
+import org.springframework.web.reactive.config.EnableWebFlux;
+import org.springframework.web.reactive.config.WebFluxConfigurer;
+
+import java.util.List;
 
 @Configuration
-//@EnableWebFlux
-@CrossOrigin(origins = "*")
-public class CorsConfig { //implements WebFluxConfigurer {
+@EnableWebFlux
+public class CorsConfig implements WebFluxConfigurer {
     @Value("${erp-app.redirect-url}")
     private String erpAppRedirectUrl;
 
     @Value("${movie-app.redirect-url}")
     private String movieAppRedirectUrl;
+
+    @Override
+    public void addCorsMappings(CorsRegistry corsRegistry) {
+        corsRegistry.addMapping("/**")
+                .allowCredentials(true)
+                .allowedOrigins("*")
+                .allowedHeaders("*")
+                .allowedMethods("*")
+                .exposedHeaders(HttpHeaders.SET_COOKIE);
+    }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
