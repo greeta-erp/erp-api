@@ -85,8 +85,13 @@ public class WebSecurityConfig {
                         //.and().and()
                         //.cors(Customizer.withDefaults())
                         //.cors().configurationSource(source -> cors_config)
-                        //.csrf().disable()
-                ).build();
+                        //.cors().and().csrf().disable()
+                )
+                .cors()
+                .and()
+                .csrf()
+                .disable()
+                .build();
     }
 
     /*@Bean

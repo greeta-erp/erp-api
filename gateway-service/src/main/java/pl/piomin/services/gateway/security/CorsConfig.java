@@ -1,6 +1,7 @@
 package pl.piomin.services.gateway.security;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.gateway.config.GlobalCorsProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -33,7 +34,7 @@ public class CorsConfig implements WebFluxConfigurer {
                 .exposedHeaders(HttpHeaders.SET_COOKIE);
     }
 
-    @Bean
+    /*@Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.addAllowedOriginPattern(erpAppRedirectUrl);
@@ -48,6 +49,13 @@ public class CorsConfig implements WebFluxConfigurer {
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", corsConfig);
+        return source;
+    }*/
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource(GlobalCorsProperties globalCorsProperties) {
+        var source = new UrlBasedCorsConfigurationSource();
+        globalCorsProperties.getCorsConfigurations().forEach(source::registerCorsConfiguration);
         return source;
     }
 }
