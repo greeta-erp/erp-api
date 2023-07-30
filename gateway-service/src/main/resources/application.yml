@@ -8,8 +8,16 @@ spring:
       ribbon:
         enabled: false
     gateway:
-      default-filters:
-        - TokenRelay
+      globalcors:
+        add-to-simple-url-handler-mapping: true
+        cors-configurations:
+          '[/**]':
+            allowed-origins: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            exposed-headers: "*"
+      #default-filters:
+      #  - TokenRelay
       discovery:
         locator:
           enabled: true
