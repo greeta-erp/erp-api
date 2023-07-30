@@ -83,7 +83,8 @@ public class WebSecurityConfig {
                         .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverterAdapter(jwtAuthConverter))
                         .and().and()
                         //.cors(Customizer.withDefaults())
-                        .cors().configurationSource(source -> cors_config)
+                        //.cors().configurationSource(source -> cors_config)
+                        .cors().and().csrf().disable()
                 ).build();
     }
 
