@@ -6,7 +6,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
-@Configuration
+//@Configuration
 //@EnableWebFlux
 public class CorsConfig { //implements WebFluxConfigurer {
     /* @Override
@@ -18,7 +18,7 @@ public class CorsConfig { //implements WebFluxConfigurer {
                 .allowedOriginPatterns("*");
     } */
 
-    @Bean
+    //@Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.addAllowedOriginPattern("*"); // Allow requests from any origin. You may restrict this to specific origins in production.
