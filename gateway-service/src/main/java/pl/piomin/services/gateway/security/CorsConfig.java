@@ -11,6 +11,7 @@ import org.springframework.web.reactive.config.CorsRegistry;
 import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 import java.util.Arrays;
+import java.util.List;
 
 @Configuration
 public class CorsConfig implements WebFluxConfigurer {
@@ -46,9 +47,9 @@ public class CorsConfig implements WebFluxConfigurer {
     @Bean
     public CorsWebFilter corsFilter() {
         org.springframework.web.cors.CorsConfiguration corsConfiguration = new org.springframework.web.cors.CorsConfiguration();
-        corsConfiguration.setAllowCredentials(true);
+        //corsConfiguration.setAllowCredentials(true);
         corsConfiguration.addAllowedOrigin("*");
-        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS", "HEAD"));
+        corsConfiguration.setAllowedMethods(List.of("*"));
         corsConfiguration.addAllowedHeader("origin");
         corsConfiguration.addAllowedHeader("content-type");
         corsConfiguration.addAllowedHeader("accept");
