@@ -81,20 +81,20 @@ public class WebSecurityConfig {
                         .and()
                         .oauth2ResourceServer().jwt()
                         .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverterAdapter(jwtAuthConverter))
-                        .and().and()
+                        //.and().and()
                         //.cors(Customizer.withDefaults())
-                        .cors().configurationSource(source -> cors_config)
-                        .and().csrf().disable()
+                        //.cors().configurationSource(source -> cors_config)
+                        //.and().csrf().disable()
                 )
                 //.exceptionHandling(exceptionHandling -> exceptionHandling
                 //        .authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)))
                 //.oauth2Login(Customizer.withDefaults())
                 //.logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler(clientRegistrationRepository)))
                 //.csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
-                .cors().configurationSource(source -> cors_config)
-                .and()
-                .csrf()
-                .disable()
+                //.cors().configurationSource(source -> cors_config)
+                //.and()
+                //.csrf()
+                //.disable()
                 .build();
     }
 

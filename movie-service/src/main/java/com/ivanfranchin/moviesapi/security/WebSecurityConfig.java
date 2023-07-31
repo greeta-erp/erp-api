@@ -42,9 +42,9 @@ public class WebSecurityConfig {
                         jwt -> jwt.jwtAuthenticationConverter(jwtAuthConverter)))
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 //.cors(Customizer.withDefaults())
-                .cors().configurationSource(source -> cors_config)
-                .and()
-                .csrf(AbstractHttpConfigurer::disable)
+                //.cors().configurationSource(source -> cors_config)
+                //.and()
+                //.csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
 
