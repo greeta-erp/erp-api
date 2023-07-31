@@ -33,7 +33,7 @@ public class MoviesController {
     private final MovieService movieService;
     private final MovieMapper movieMapper;
 
-    @GetMapping("/")
+    @GetMapping
     public List<MovieDto> getMovies() {
         return movieService.getMovies().stream().map(movieMapper::toMovieDto).toList();
     }
@@ -45,7 +45,7 @@ public class MoviesController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/")
+    @PostMapping
     public MovieDto createMovie(@Valid @RequestBody CreateMovieRequest createMovieRequest) {
         Movie movie = movieMapper.toMovie(createMovieRequest);
         movie = movieService.saveMovie(movie);
