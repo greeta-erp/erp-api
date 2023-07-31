@@ -53,7 +53,7 @@ public class WebSecurityConfig {
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
 
         final CorsConfiguration cors_config = new CorsConfiguration();
-        //cors_config.setAllowCredentials(true);
+        cors_config.setAllowCredentials(true);
         //cors_config.applyPermitDefaultValues();
         cors_config.setAllowedOrigins(List.of("https://movie.greeta.net"));
         cors_config.setAllowedHeaders(List.of("*"));

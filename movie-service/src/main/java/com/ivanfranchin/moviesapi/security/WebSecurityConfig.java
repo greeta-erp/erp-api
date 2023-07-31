@@ -24,7 +24,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         final CorsConfiguration cors_config = new CorsConfiguration();
-        //cors_config.setAllowCredentials(true);
+        cors_config.setAllowCredentials(true);
         //cors_config.applyPermitDefaultValues();
         cors_config.setAllowedOrigins(List.of("https://movie.greeta.net"));
         cors_config.setAllowedHeaders(List.of("*"));
