@@ -44,7 +44,7 @@ public class WebSecurityConfig {
                 //.cors(Customizer.withDefaults())
                 //.cors().configurationSource(source -> cors_config)
                 //.and()
-                //.csrf(AbstractHttpConfigurer::disable)
+                .csrf(csrf -> csrf.disable())
                 .build();
     }
 

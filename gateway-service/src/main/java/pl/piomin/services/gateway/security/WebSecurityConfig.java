@@ -10,6 +10,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -78,12 +79,10 @@ public class WebSecurityConfig {
                         .pathMatchers("/movie/userextras/me").hasAnyRole(ERP_MANAGER, ERP_USER)
                         .anyExchange().authenticated()
                         .and()
+                        .csrf(csrf -> csrf.disable())
                         .oauth2ResourceServer().jwt()
                         .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverterAdapter(jwtAuthConverter))
-                        //.and().and()
                         //.cors(Customizer.withDefaults())
-                        //.cors().configurationSource(source -> cors_config)
-                        //.and().csrf().disable()
                 )
                 //.exceptionHandling(exceptionHandling -> exceptionHandling
                 //        .authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)))
@@ -92,8 +91,7 @@ public class WebSecurityConfig {
                 //.csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                 //.cors().configurationSource(source -> cors_config)
                 //.and()
-                //.csrf()
-                //.disable()
+                .csrf(csrf -> csrf.disable())
                 .build();
     }
 
