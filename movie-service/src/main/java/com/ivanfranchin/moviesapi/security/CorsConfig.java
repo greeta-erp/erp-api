@@ -10,7 +10,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import java.util.List;
 
 
-@Configuration
+//@Configuration
 public class CorsConfig {
     @Value("${erp-app.redirect-url}")
     private String erpAppRedirectUrl;
