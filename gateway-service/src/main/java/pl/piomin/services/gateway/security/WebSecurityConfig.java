@@ -79,7 +79,7 @@ public class WebSecurityConfig {
                         .pathMatchers("/movie/userextras/me").hasRole(ERP_USER)
                         .anyExchange().authenticated()
                         .and()
-                        .csrf(csrf -> csrf.disable())
+                        .csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                         .oauth2ResourceServer().jwt()
                         .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverterAdapter(jwtAuthConverter))
                         //.cors(Customizer.withDefaults())
@@ -88,10 +88,10 @@ public class WebSecurityConfig {
                 //        .authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)))
                 //.oauth2Login(Customizer.withDefaults())
                 //.logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler(clientRegistrationRepository)))
-                //.csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
+                .csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                 //.cors().configurationSource(source -> cors_config)
                 //.and()
-                .csrf(csrf -> csrf.disable())
+                //.csrf(csrf -> csrf.disable())
                 .build();
     }
 
