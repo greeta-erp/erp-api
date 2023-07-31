@@ -24,9 +24,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
                 .requestMatchers(HttpMethod.GET, "/", "/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/employee", "/employee/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-                .requestMatchers("/employee", "/employee/**").hasRole(ERP_MANAGER)
+                .requestMatchers("/", "/**").hasRole(ERP_MANAGER)
                 .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                 .anyRequest().authenticated();
         http.oauth2ResourceServer()

@@ -31,11 +31,11 @@ public class WebSecurityConfig {
         cors_config.setAllowedMethods(List.of("*"));
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers(HttpMethod.GET, "/movie", "/movie/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/", "/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-                        .requestMatchers("/movie", "/movie/**").hasRole(ERP_MANAGER)
-                        .requestMatchers("/movie/*/comments").hasAnyRole(ERP_MANAGER, ERP_USER)
-                        .requestMatchers("/movie/userextras/me").hasAnyRole(ERP_MANAGER, ERP_USER)
+                        .requestMatchers("/", "/**").hasRole(ERP_MANAGER)
+                        .requestMatchers("/*/comments").hasAnyRole(ERP_MANAGER, ERP_USER)
+                        .requestMatchers("/userextras/me").hasAnyRole(ERP_MANAGER, ERP_USER)
                         .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt(
