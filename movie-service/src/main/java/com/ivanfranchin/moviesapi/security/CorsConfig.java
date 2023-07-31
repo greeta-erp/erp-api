@@ -20,7 +20,7 @@ public class CorsConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         //corsConfig.addAllowedOriginPattern(erpAppRedirectUrl);
-        corsConfig.addAllowedOriginPattern(movieAppRedirectUrl);
+        corsConfig.addAllowedOriginPattern("*");
         corsConfig.addAllowedMethod("HEAD");
         corsConfig.addAllowedMethod("GET");
         corsConfig.addAllowedMethod("POST");

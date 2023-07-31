@@ -28,7 +28,7 @@ public class CorsConfig implements WebFluxConfigurer {
     public void addCorsMappings(CorsRegistry corsRegistry) {
         corsRegistry.addMapping("/**")
                 .allowCredentials(true)
-                .allowedOrigins(movieAppRedirectUrl)
+                .allowedOrigins("*")
                 .allowedHeaders("*")
                 .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
                 .exposedHeaders(HttpHeaders.SET_COOKIE);
