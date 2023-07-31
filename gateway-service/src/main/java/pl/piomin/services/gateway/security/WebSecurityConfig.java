@@ -70,10 +70,9 @@ public class WebSecurityConfig {
                         .pathMatchers(HttpMethod.GET,"/employee/v3/api-docs/**").permitAll()
                         .pathMatchers(HttpMethod.GET,"/organization/v3/api-docs/**").permitAll()
                         .pathMatchers(HttpMethod.GET,"/movie/v3/api-docs/**").permitAll()
-
+                        .pathMatchers(HttpMethod.GET, "/movie", "/movie/**").permitAll()
                         .pathMatchers(HttpMethod.GET, "/employee", "/employee/**").permitAll()
                         .pathMatchers("/employee", "/employee/**").hasRole(ERP_MANAGER)
-                        .pathMatchers(HttpMethod.GET, "/movie", "/movie/**").permitAll()
                         .pathMatchers("/movie/*/comments").hasAnyRole(ERP_MANAGER, ERP_USER)
                         .pathMatchers("/movie", "/movie/**").hasRole(ERP_MANAGER)
                         .pathMatchers("/movie/userextras/me").hasAnyRole(ERP_MANAGER, ERP_USER)

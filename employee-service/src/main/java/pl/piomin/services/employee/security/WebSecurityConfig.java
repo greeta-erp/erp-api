@@ -23,6 +23,7 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests()
+                .requestMatchers(HttpMethod.GET, "/", "/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/employee", "/employee/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                 .requestMatchers("/employee", "/employee/**").hasRole(ERP_MANAGER)

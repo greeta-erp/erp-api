@@ -33,8 +33,8 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers(HttpMethod.GET, "/movie", "/movie/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-                        .requestMatchers("/movie/*/comments").hasAnyRole(ERP_MANAGER, ERP_USER)
                         .requestMatchers("/movie", "/movie/**").hasRole(ERP_MANAGER)
+                        .requestMatchers("/movie/*/comments").hasAnyRole(ERP_MANAGER, ERP_USER)
                         .requestMatchers("/movie/userextras/me").hasAnyRole(ERP_MANAGER, ERP_USER)
                         .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated())
