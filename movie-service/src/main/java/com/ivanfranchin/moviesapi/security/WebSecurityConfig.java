@@ -31,7 +31,7 @@ public class WebSecurityConfig {
         cors_config.setAllowedMethods(List.of("*"));
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers(HttpMethod.GET, "/", "/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "", "/").permitAll()
                         .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                         .requestMatchers("/*/comments").hasAnyRole(ERP_MANAGER, ERP_USER)
                         .requestMatchers("/userextras/me").hasAnyRole(ERP_MANAGER, ERP_USER)

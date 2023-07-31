@@ -75,7 +75,7 @@ public class WebSecurityConfig {
                         .pathMatchers(HttpMethod.GET, "/employee", "/employee/**").permitAll()
                         .pathMatchers("/employee", "/employee/**").hasRole(ERP_MANAGER)
                         .pathMatchers("/movie/*/comments").hasAnyRole(ERP_MANAGER, ERP_USER)
-                        .pathMatchers("/movie", "/movie/**").hasRole(ERP_MANAGER)
+                        .pathMatchers("/movie", "/movie/").hasRole(ERP_MANAGER)
                         .pathMatchers("/movie/userextras/me").hasAnyRole(ERP_MANAGER, ERP_USER)
                         .anyExchange().authenticated()
                         .and()
