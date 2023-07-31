@@ -21,7 +21,13 @@ public class CorsConfig {
         CorsConfiguration corsConfig = new CorsConfiguration();
         //corsConfig.addAllowedOriginPattern(erpAppRedirectUrl);
         corsConfig.addAllowedOriginPattern(movieAppRedirectUrl);
-        corsConfig.addAllowedMethod("*");
+        corsConfig.addAllowedMethod("HEAD");
+        corsConfig.addAllowedMethod("GET");
+        corsConfig.addAllowedMethod("POST");
+        corsConfig.addAllowedMethod("PUT");
+        corsConfig.addAllowedMethod("DELETE");
+        corsConfig.addAllowedMethod("PATCH");
+        corsConfig.addAllowedMethod("OPTIONS");
         corsConfig.addAllowedHeader("*");
         corsConfig.setAllowCredentials(true);
 

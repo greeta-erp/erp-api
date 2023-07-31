@@ -28,8 +28,7 @@ public class WebSecurityConfig {
         //cors_config.applyPermitDefaultValues();
         cors_config.setAllowedOrigins(List.of("https://movie.greeta.net"));
         cors_config.setAllowedHeaders(List.of("*"));
-        cors_config.setAllowedMethods(List.of("*"));
-        cors_config.setAllowedHeaders(List.of("*"));
+        cors_config.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers(HttpMethod.GET, "/movie", "/movie/**").permitAll()

@@ -18,6 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/userextras")
+@CrossOrigin(origins = "https://movie.greeta.net")
 public class UserExtraController {
 
     private final UserExtraService userExtraService;

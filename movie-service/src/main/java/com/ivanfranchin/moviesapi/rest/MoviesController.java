@@ -26,6 +26,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@CrossOrigin(origins = "https://movie.greeta.net")
 public class MoviesController {
 
     private final MovieService movieService;

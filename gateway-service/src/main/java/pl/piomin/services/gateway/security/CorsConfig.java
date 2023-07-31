@@ -30,7 +30,7 @@ public class CorsConfig implements WebFluxConfigurer {
                 .allowCredentials(true)
                 .allowedOrigins(movieAppRedirectUrl)
                 .allowedHeaders("*")
-                .allowedMethods("*")
+                .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
                 .exposedHeaders(HttpHeaders.SET_COOKIE);
     }
 
