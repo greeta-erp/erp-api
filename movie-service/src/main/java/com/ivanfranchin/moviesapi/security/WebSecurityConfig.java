@@ -34,8 +34,8 @@ public class WebSecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/", "/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/actuator/**").permitAll()
                         .requestMatchers("/", "/**").hasRole(ERP_MANAGER)
-                        .requestMatchers("/*/comments").hasAnyRole(ERP_MANAGER, ERP_USER)
-                        .requestMatchers("/userextras/me").hasAnyRole(ERP_MANAGER, ERP_USER)
+                        .requestMatchers("/*/comments").hasRole(ERP_USER)
+                        .requestMatchers("/userextras/me").hasRole(ERP_USER)
                         .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated())
                 .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt(
