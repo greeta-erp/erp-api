@@ -8,7 +8,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 
-//@Configuration
+@Configuration
 public class CorsConfig {
     @Value("${erp-app.redirect-url}")
     private String erpAppRedirectUrl;
@@ -16,7 +16,7 @@ public class CorsConfig {
     @Value("${movie-app.redirect-url}")
     private String movieAppRedirectUrl;
 
-    //@Bean
+    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         //corsConfig.addAllowedOriginPattern(erpAppRedirectUrl);

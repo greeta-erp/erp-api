@@ -55,7 +55,7 @@ public class WebSecurityConfig {
         final CorsConfiguration cors_config = new CorsConfiguration();
         //cors_config.setAllowCredentials(true);
         //cors_config.applyPermitDefaultValues();
-        cors_config.setAllowedOrigins(Arrays.asList("*"));
+        cors_config.setAllowedOrigins(List.of("https://movie.greeta.net"));
         cors_config.setAllowedHeaders(List.of("*"));
         cors_config.setAllowedMethods(List.of("*"));
         cors_config.setAllowedHeaders(List.of("*"));
@@ -92,6 +92,8 @@ public class WebSecurityConfig {
                 //.oauth2Login(Customizer.withDefaults())
                 //.logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler(clientRegistrationRepository)))
                 //.csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
+                .cors().configurationSource(source -> cors_config)
+                .and()
                 .csrf()
                 .disable()
                 .build();

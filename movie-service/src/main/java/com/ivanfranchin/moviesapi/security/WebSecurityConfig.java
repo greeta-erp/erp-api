@@ -10,6 +10,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Configuration
@@ -20,6 +23,13 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        final CorsConfiguration cors_config = new CorsConfiguration();
+        //cors_config.setAllowCredentials(true);
+        //cors_config.applyPermitDefaultValues();
+        cors_config.setAllowedOrigins(List.of("https://movie.greeta.net"));
+        cors_config.setAllowedHeaders(List.of("*"));
+        cors_config.setAllowedMethods(List.of("*"));
+        cors_config.setAllowedHeaders(List.of("*"));
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers(HttpMethod.GET, "/movie", "/movie/**").permitAll()
@@ -33,6 +43,8 @@ public class WebSecurityConfig {
                         jwt -> jwt.jwtAuthenticationConverter(jwtAuthConverter)))
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 //.cors(Customizer.withDefaults())
+                .cors().configurationSource(source -> cors_config)
+                .and()
                 .csrf(AbstractHttpConfigurer::disable)
                 .build();
     }
