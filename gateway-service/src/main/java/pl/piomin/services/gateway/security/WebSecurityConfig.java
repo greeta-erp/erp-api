@@ -57,7 +57,7 @@ public class WebSecurityConfig {
         //cors_config.applyPermitDefaultValues();
         cors_config.setAllowedOriginPatterns(List.of("*"));
         cors_config.setAllowedHeaders(List.of("*"));
-        cors_config.setAllowedMethods(List.of("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+        cors_config.setAllowedMethods(List.of("*"));
 
         return http
                 .authorizeExchange(exchange -> exchange

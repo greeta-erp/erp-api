@@ -30,8 +30,7 @@ public class CorsConfig implements WebFluxConfigurer {
                 .allowCredentials(true)
                 .allowedOriginPatterns("*")
                 .allowedHeaders("*")
-                .allowedMethods("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
-                .exposedHeaders(HttpHeaders.SET_COOKIE);
+                .allowedMethods("*");
     }
 
     /*@Bean
