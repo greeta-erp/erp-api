@@ -1,12 +1,12 @@
 ### Cloud-Native Microservices GitOps Pipeline on AWS with Spring Boot, Terraform, Kubernetes, Keycloak Oauth2 Authorization Server, Github Actions, Spring Cloud Gateway, AWS SSL Certificate, External DNS, Nginx Ingress Controller, Spring Cloud Kubernetes, Swagger UI REST API Documentation and Grafana Observability Stack
 
-**Keycloak Administration Console** is available here: **https://keycloak.yourdomain.com**
+**Keycloak Administration Console** will be available here: **https://keycloak.yourdomain.com**
 
 ###### **admin user:** admin
 
 ###### **admin password:** admin
 
-**Movies Online UI**, secured with **Keycloak Server** is available here: **https://movie.yourdomain.com**
+**Movies Online UI**, secured with **Keycloak Server** will be available here: **https://movie.yourdomain.com**
 
 ###### **manager user:** admin
 
@@ -16,7 +16,7 @@
 
 ###### **regular password:** user
 
-**Swagger UI Spring Cloud Gateway REST API Documentation**, secured with **Keycloak Server** is available here: **https://erp.yourdomain.com**
+**Swagger UI Spring Cloud Gateway REST API Documentation**, secured with **Keycloak Server** will be available here: **https://erp.yourdomain.com**
 
 ###### **manager user:** admin
 
@@ -33,7 +33,7 @@
 
 ###### **user:** user
 
-###### **password:** see step 08
+###### **password:** see step-08
 
 
 ### Step 01 - Clone repositories
