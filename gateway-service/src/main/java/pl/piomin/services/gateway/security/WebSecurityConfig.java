@@ -53,13 +53,6 @@ public class WebSecurityConfig {
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
 
-        final CorsConfiguration cors_config = new CorsConfiguration();
-        cors_config.setAllowCredentials(true);
-        //cors_config.applyPermitDefaultValues();
-        cors_config.setAllowedOriginPatterns(List.of("*"));
-        cors_config.setAllowedHeaders(List.of("*"));
-        cors_config.setAllowedMethods(List.of("*"));
-
         return http
                 .authorizeExchange(exchange -> exchange
                         .pathMatchers(HttpMethod.GET, "/actuator/**").permitAll()
@@ -82,31 +75,10 @@ public class WebSecurityConfig {
                          .csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
                         .oauth2ResourceServer().jwt()
                         .jwtAuthenticationConverter(new ReactiveJwtAuthenticationConverterAdapter(jwtAuthConverter))
-                        //.cors(Customizer.withDefaults())
                 )
-                //.exceptionHandling(exceptionHandling -> exceptionHandling
-                //        .authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)))
-                //.oauth2Login(Customizer.withDefaults())
-                //.logout(logout -> logout.logoutSuccessHandler(oidcLogoutSuccessHandler(clientRegistrationRepository)))
                 .csrf(csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()))
-                //.cors().configurationSource(source -> cors_config)
-                //.and()
-                //.csrf(csrf -> csrf.disable())
                 .build();
     }
-
-    /*@Bean
-    public ReactiveJwtDecoder jwtDecoder(@Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}") String jwkSetUri,
-                                 @Value("${spring.security.oauth2.resourceserver.jwt.issuer-uri}") String jwkIssuerUri) {
-        NimbusReactiveJwtDecoder jwtDecoder = NimbusReactiveJwtDecoder
-                .withJwkSetUri(jwkSetUri)
-                .jwsAlgorithm(SignatureAlgorithm.RS256).build();
-        jwtDecoder.setClaimSetConverter(claims -> {
-            claims.put("iss", jwkIssuerUri);
-            return claims;
-        });
-        return jwtDecoder;
-    }*/
 
     @Bean
     WebFilter csrfWebFilter() {

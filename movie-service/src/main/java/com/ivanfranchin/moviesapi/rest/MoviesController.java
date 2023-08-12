@@ -27,7 +27,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-//@CrossOrigin(origins = "*", allowedHeaders = "*", methods = {RequestMethod.OPTIONS, RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.PATCH})
 public class MoviesController {
 
     private final MovieService movieService;

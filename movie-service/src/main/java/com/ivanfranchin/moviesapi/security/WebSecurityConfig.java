@@ -23,12 +23,6 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        final CorsConfiguration cors_config = new CorsConfiguration();
-        cors_config.setAllowCredentials(true);
-        //cors_config.applyPermitDefaultValues();
-        cors_config.setAllowedOriginPatterns(List.of("*"));
-        cors_config.setAllowedHeaders(List.of("*"));
-        cors_config.setAllowedMethods(List.of("*"));
         return http
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
                         .requestMatchers(HttpMethod.GET, "", "/").permitAll()
@@ -41,9 +35,6 @@ public class WebSecurityConfig {
                 .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt(
                         jwt -> jwt.jwtAuthenticationConverter(jwtAuthConverter)))
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                //.cors(Customizer.withDefaults())
-                //.cors().configurationSource(source -> cors_config)
-                //.and()
                 .csrf(csrf -> csrf.disable())
                 .build();
     }
