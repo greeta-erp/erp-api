@@ -38,9 +38,11 @@
 
 ### Step 01 - Clone repositories
 
-https://github.com/greeta-erp/erp-api (API Source Code and Github Docker Images Pipeline)
-https://github.com/greeta-erp/erp-infra (Terraform Infrastructure and GitOps Pipeline)
-https://github.com/greeta-erp/erp-ui (UI Source Code and Github Docker Image Pipeline)
+**https://github.com/greeta-erp/erp-api** (API Source Code and Github Docker Images Pipeline)
+
+**https://github.com/greeta-erp/erp-infra** (Terraform Infrastructure and GitOps Pipeline)
+
+**https://github.com/greeta-erp/erp-ui** (UI Source Code and Github Docker Image Pipeline)
 
 ### Step-02: Prepare Your AWS Account
 
@@ -132,7 +134,7 @@ kubectl get secret --namespace observability-stack loki-stack-grafana -o jsonpat
 
 ### Step-08: Test your Microservices:
 
-- go to "**https://erp.yourdomain.com"
+- go to "**https://erp.yourdomain.com**"
 
 - you should see successfully loaded "**Swagger UI REST API Documentation**" page with drop-down selection of microservices
 - Select any microservice from the drop-donw list
