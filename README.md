@@ -29,6 +29,13 @@
 ###### **Oauth2 Client:** erp-app
 
 
+**Grafana Observability Stack**, will be available here: **https://grafana.yourdomain.com**
+
+###### **user:** user
+
+###### **password:** see step 08
+
+
 ### Step 01 - Clone repositories
 
 https://github.com/greeta-erp/erp-api (API Source Code and Github Docker Images Pipeline)
